@@ -4,11 +4,6 @@
 
 using namespace std;
 
-int liczba() {
-    if (tutaj szatana znalezc)
-    return 0;
-}
-
 int main()
 {
     // Zmienne poczatkowe.
@@ -20,7 +15,7 @@ int main()
     char liczbaPodCiagu;
 
     // Losowanie liczb i dodanie ich do tablicy.
-    cout << "Wylosowane liczby: ";
+    cout << "Wylosowany ciag liczb: ";
     for (int i = 0; i < 50; i++) {
         losoweLiczby[i] = rand() % 10;
         cout << losoweLiczby[i];
@@ -83,22 +78,34 @@ int main()
 
         // Policzenie ilosci podciagow.
         int calc = 0;
+        int temp = 0;
         for (int i = 0; i < (50 - iloscWprowadzonych); i++) {
             for (int k = 0; k < iloscWprowadzonych; k++) {
-
+                if (losoweLiczby[i + k] == liczba[k]) {
+                    temp++;
+                } else {
+                    break;
+                }
             }
+            if (temp == iloscWprowadzonych) {
+                calc++;
+            }
+            temp = 0;
         }
 
         // Wyswietlenie wyniku.
-        cout << "Podciag ";
-        for (int i = 0; i < iloscWprowadzonych; i++) {
-            cout << liczba[i];
-            if (i < iloscWprowadzonych - 1) {
-                cout << ", ";
+        if (iloscWprowadzonych == 0) {
+            cout << "Nie wprowadzono zadnego podciagu." << endl;
+        } else {
+            cout << "Podciag ";
+            for (int i = 0; i < iloscWprowadzonych; i++) {
+                cout << liczba[i];
+                if (i < iloscWprowadzonych - 1) {
+                    cout << ", ";
+                }
             }
+            cout << " wystapil " << calc << " razy." << endl;
         }
-        cout << " wystapil " << calc << " razy." << endl;
-
         cout << "Przeszukiwac ponownie (t/T)? ";
         cin >> koniec;
     } while (koniec == 't' || koniec == 'T');
